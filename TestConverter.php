@@ -32,6 +32,11 @@ class TestConverter {
 	const EXCEPTION_EMPTY_NODE = 'The information provided could not be validated via wolfram alpha';
 
 	/**
+	 * Exception when there is a validation error
+	 */
+	const EXCEPTION_MATCH_ERROR = 'The integer %1$s has be converted as %2$s but Wolfram Alpha has returned %3$s';
+
+	/**
 	 * From the given integer
 	 *  - create a url for wolfram alpha
 	 *  - send request
@@ -63,6 +68,15 @@ class TestConverter {
 		if($sWolframAlphaResponse == $sRegExResult) {
 			return true;
 		}
+
+		throw new Exception(
+			sprintf(
+				$this::EXCEPTION_MATCH_ERROR,
+				$iIntegerToBeConverted,
+				$sRegExResult,
+				$sWolframAlphaResponse
+			)
+		);
 	}
 
 	/**
