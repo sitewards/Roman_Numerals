@@ -2,11 +2,14 @@
 include_once(getcwd().'/Converter.php');
 $oConverter = new Converter();
 
-echo "Lets format the number 14\n";
-$iTheNumber1 = 14;
+echo "Please enter a number you wish to convert:\n";
+$oHandle = fopen('php://stdin', 'r');
+$mUserInput = trim(fgets($oHandle));
+
 try {
-	$sRomanNumeral = $oConverter->convertIntegerToRomanNumeral($iTheNumber1);
-	echo var_dump($sRomanNumeral == 'XIV');
+	$sRomanNumeral = $oConverter->convertIntegerToRomanNumeral($mUserInput);
+	echo 'Number: ' . htmlspecialchars($mUserInput) . "\n";
+	echo 'Roman Numeral: ' . $sRomanNumeral;
 } catch (Exception $oException) {
 	echo $oException->getMessage();
 }

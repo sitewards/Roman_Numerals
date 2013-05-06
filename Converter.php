@@ -80,6 +80,11 @@ class Converter {
 	const HIGHEST_TESTED_VALUE = 5000;
 
 	/**
+	 * Regular expression to check if the number entered is an integer
+	 */
+	const INTEGER_REG_EX = '/^[0-9]+$/';
+
+	/**
 	 * For a given integer
 	 *  - split the number into a string containing just the letter "I"
 	 *    - e.g. 14 becomes "IIIIIIIIIIIIII"
@@ -92,7 +97,7 @@ class Converter {
 	 *  - when an int outside of the tested range is provided
 	 */
 	public function convertIntegerToRomanNumeral($iIntegerToBeConverted) {
-		if(!is_int($iIntegerToBeConverted)) {
+		if(!preg_match($this::INTEGER_REG_EX, $iIntegerToBeConverted)) {
 			throw new Exception($this::EXCEPTION_MESSAGE_INPUT_WRONG_TYPE);
 		} elseif (
 			$iIntegerToBeConverted < $this::LOWEST_TESTED_VALUE
