@@ -1,6 +1,6 @@
 <?php
-include_once(getcwd().'/Converter.php');
-include_once(getcwd().'/TestConverter.php');
+include_once(getcwd() . DIRECTORY_SEPARATOR . 'Converter.php');
+include_once(getcwd() . DIRECTORY_SEPARATOR . 'TestConverter.php');
 
 $oConverter = new Converter();
 $oTestConverter = new TestConverter();
